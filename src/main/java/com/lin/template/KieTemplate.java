@@ -65,6 +65,9 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
      * @return KieSession
      */
     public KieSession getKieSession(String... fileName) {
+        if (CACHE_RULE.isEmpty()){
+            flashCache();
+        }
         List<String> ds = new ArrayList<>();
         for (String name : fileName) {
             String content = CACHE_RULE.get(name);
